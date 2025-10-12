@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.nadia.inmobiliariatp.ui.inicio.InicioFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_inicio" />
+
+    <fragment
+        android:id="@+id/nav_gallery"
+        android:name="com.nadia.inmobiliariatp.ui.inmueble.InmuebleFragment"
+        android:label="@string/menu_gallery"
+        tools:layout="@layout/fragment_inmueble" />
+
+    <fragment
+        android:id="@+id/nav_slideshow"
+        android:name="com.nadia.inmobiliariatp.ui.perfil.PerfilFragment"
+        android:label="@string/menu_slideshow"
+        tools:layout="@layout/fragment_perfil" />
+    <fragment
+        android:id="@+id/nav_contratos"
+        android:name="com.nadia.inmobiliariatp.ui.contratos.ContratosFragment"
+        android:label="fragment_contratos"
+        tools:layout="@layout/fragment_contratos" />
+    <fragment
+        android:id="@+id/nav_inquilinos"
+        android:name="com.nadia.inmobiliariatp.ui.inquilinos.InquilinosFragment"
+        android:label="fragment_inquilinos"
+        tools:layout="@layout/fragment_inquilinos" />
+    <fragment
+        android:id="@+id/nav_logout"
+        android:name="com.nadia.inmobiliariatp.ui.logout.LogoutFragment"
+        android:label="fragment_logout"
+        tools:layout="@layout/fragment_logout" />
+</navigation>
