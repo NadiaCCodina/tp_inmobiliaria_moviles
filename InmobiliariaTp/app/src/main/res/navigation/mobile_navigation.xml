@@ -13,9 +13,9 @@
 
     <fragment
         android:id="@+id/nav_gallery"
-        android:name="com.nadia.inmobiliariatp.ui.inmueble.InmuebleFragment"
+        android:name="com.nadia.inmobiliariatp.ui.inmueble.InmueblesFragment"
         android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_inmueble" />
+        tools:layout="@layout/fragment_inmuebles" />
 
     <fragment
         android:id="@+id/nav_slideshow"

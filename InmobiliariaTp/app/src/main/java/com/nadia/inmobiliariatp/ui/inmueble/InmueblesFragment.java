@@ -13,14 +13,14 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.nadia.inmobiliariatp.databinding.FragmentInmuebleBinding;
 
-public class InmuebleFragment extends Fragment {
+public class InmueblesFragment extends Fragment {
 
     private FragmentInmuebleBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        InmuebleViewModel galleryViewModel =
-                new ViewModelProvider(this).get(InmuebleViewModel.class);
+        InmueblesViewModel galleryViewModel =
+                new ViewModelProvider(this).get(InmueblesViewModel.class);
 
         binding = FragmentInmuebleBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
