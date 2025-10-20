@@ -6,7 +6,10 @@ import android.media.session.MediaSession;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.nadia.inmobiliariatp.models.Inmueble;
 import com.nadia.inmobiliariatp.models.Propietario;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -18,28 +21,41 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Path;
 
 public class ApiClient {
-    private static  String URL = "https://inmobiliariaulp-amb5hwfqaraweyga.canadacentral-01.azurewebsites.net/";
-public static InmoServicio getInmoServicio() {
-    Gson gson = new GsonBuilder().setLenient().create();
-    Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl(URL)
-            .addConverterFactory(GsonConverterFactory.create(gson))
-            .build();
-    return retrofit.create(InmoServicio.class);
+    public static final String URL_BASE = "https://inmobiliariaulp-amb5hwfqaraweyga.canadacentral-01.azurewebsites.net/";
+
+    public static InmoServicio getInmoServicio() {
+        Gson gson = new GsonBuilder().setLenient().create();
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(URL_BASE)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+        return retrofit.create(InmoServicio.class);
 
 
-}
-    public interface InmoServicio{
+    }
+
+    public interface InmoServicio {
         @FormUrlEncoded
         @POST("api/Propietarios/login")
         Call<String> loginForm(@Field("Usuario") String usuario, @Field("Clave") String clave);
+
         @GET("api/Propietarios")
-        Call<Propietario>getPropietario(@Header("Authorization") String token);
+        Call<Propietario> getPropietario(@Header("Authorization") String token);
 
         @PUT("api/Propietarios/actualizar")
         Call<Propietario> ActualizarPropietario(@Header("Authorization") String token, @Body Propietario p);
+
+        @GET("/api/Inmuebles")
+        Call<List<Inmueble>> getInmuebles(@Header("Authorization") String token);
+
+        @PUT("api/Inmuebles/actualizar")
+        Call<Inmueble> actualizarInmueble(
+                @Header("Authorization") String token,
+                @Body Inmueble inmueble
+        );
     }
 
     public static void guardarToken(Context context, String token) {
@@ -54,7 +70,7 @@ public static InmoServicio getInmoServicio() {
         return sp.getString("token", null);
     }
 
-    public static String getToken(Context context){
-     return leerToken(context);
+    public static String getToken(Context context) {
+        return leerToken(context);
     }
 }
