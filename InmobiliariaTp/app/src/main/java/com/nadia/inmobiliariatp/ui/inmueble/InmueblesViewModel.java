@@ -55,7 +55,7 @@ public class InmueblesViewModel extends AndroidViewModel {
                 if (response.isSuccessful()){
                     listaInmuebles.postValue(response.body());
                 }else {
-                    Toast.makeText(getApplication(),"no se obtuvieron Inmuebles",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplication(),"No se obtuvieron Inmuebles",Toast.LENGTH_LONG).show();
                 }
             }
 
