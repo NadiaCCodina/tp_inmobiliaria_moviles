@@ -3,6 +3,7 @@ package com.nadia.inmobiliariatp.ui.perfil;
 import android.app.Application;
 import android.content.Context;
 import android.util.Log;
+import android.util.Patterns;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -70,6 +71,9 @@ public class PerfilViewModel extends AndroidViewModel {
         } else {
             mEstado.setValue(false);
             mNombre.setValue("EDITAR");
+            if (!validarCampos(nombre, apellido, email, telefono, dni)) {
+                return;
+            }
             Propietario propietarioModel = new Propietario();
             propietarioModel.setApellido(apellido);
             propietarioModel.setDni(dni);
@@ -100,5 +104,28 @@ public class PerfilViewModel extends AndroidViewModel {
         }
 
     }
+    private boolean validarCampos(String nombre, String apellido, String email, String telefono, String dni) {
+        if (nombre == null || nombre.trim().isEmpty()) {
+            Toast.makeText(getApplication(), "El nombre no puede estar vacío", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if (apellido == null || apellido.trim().isEmpty()) {
+            Toast.makeText(getApplication(), "El apellido no puede estar vacío", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if (dni == null || dni.trim().isEmpty() || !dni.matches("\\d+")) {
+            Toast.makeText(getApplication(), "Ingrese un DNI válido", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if (telefono == null || telefono.trim().isEmpty() || !telefono.matches("\\d{7,15}")) {
+            Toast.makeText(getApplication(), "Ingrese un teléfono válido", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if (email == null || email.trim().isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            Toast.makeText(getApplication(), "Ingrese un email válido", Toast.LENGTH_SHORT).show();
+            return false;
+        }
 
+        return true; // todo ok
+    }
 }
