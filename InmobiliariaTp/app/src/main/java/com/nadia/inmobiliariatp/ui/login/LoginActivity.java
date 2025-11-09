@@ -1,11 +1,14 @@
 package com.nadia.inmobiliariatp.ui.login;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -14,6 +17,8 @@ import com.nadia.inmobiliariatp.databinding.LoginBinding;
 
 public class LoginActivity extends AppCompatActivity {
     private LoginActivityViewModel viewModel;
+    private static final int REQUEST_CALL_PERMISSION = 100;
+
     private LoginBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +26,15 @@ public class LoginActivity extends AppCompatActivity {
         binding =LoginBinding.inflate(getLayoutInflater());
         viewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()).create(LoginActivityViewModel.class);
         setContentView(binding.getRoot());
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE)
+                != PackageManager.PERMISSION_GRANTED) {
 
+            ActivityCompat.requestPermissions(
+                    this,
+                    new String[]{Manifest.permission.CALL_PHONE},
+                    REQUEST_CALL_PERMISSION
+            );
+        }
         binding.btLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,4 +62,18 @@ public class LoginActivity extends AppCompatActivity {
 
         });
     }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        viewModel.iniciarDeteccionMovimiento();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        viewModel.detenerDeteccionMovimiento();
+    }
+
 }

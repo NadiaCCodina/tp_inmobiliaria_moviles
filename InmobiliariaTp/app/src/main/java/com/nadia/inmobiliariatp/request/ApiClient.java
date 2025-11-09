@@ -2,11 +2,12 @@ package com.nadia.inmobiliariatp.request;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.media.session.MediaSession;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.nadia.inmobiliariatp.models.Contrato;
 import com.nadia.inmobiliariatp.models.Inmueble;
+import com.nadia.inmobiliariatp.models.Pago;
 import com.nadia.inmobiliariatp.models.Propietario;
 
 import java.util.List;
@@ -55,7 +56,16 @@ public class ApiClient {
 
         @GET("/api/Inmuebles")
         Call<List<Inmueble>> getInmuebles(@Header("Authorization") String token);
+        @GET("/api/Inmuebles/GetContratoVigente")
+        Call<List<Inmueble>> getInmueblesContrato(@Header("Authorization") String token);
 
+        @GET("/api/contratos/inmueble/{id}")
+        Call<Contrato> getContrato(@Header("Authorization") String token,
+                                   @Path("id") int idInmueble);
+
+        @GET("/api/pagos/contrato/{id}")
+        Call<List<Pago>> getPagos(@Header("Authorization") String token,
+                            @Path("id") int idContrato);
         @PUT("api/Inmuebles/actualizar")
         Call<Inmueble> actualizarInmueble(
                 @Header("Authorization") String token,

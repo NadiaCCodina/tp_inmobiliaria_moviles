@@ -1,5 +1,8 @@
 package com.nadia.inmobiliariatp;
 
+import android.hardware.Sensor;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
@@ -18,7 +21,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.nadia.inmobiliariatp.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
-
+SensorManager sensorManager;
+Sensor sensor;
+SensorEventListener sensorEventListener;
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
 
@@ -46,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.id.nav_contratos, R.id.nav_inquilinos)
+                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.id.nav_contratos)
                 .setOpenableLayout(drawer)
                 .build();
 

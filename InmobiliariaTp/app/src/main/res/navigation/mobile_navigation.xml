@@ -8,13 +8,13 @@
     <fragment
         android:id="@+id/nav_home"
         android:name="com.nadia.inmobiliariatp.ui.inicio.InicioFragment"
-        android:label="@string/menu_home"
+        android:label="Ubicacion"
         tools:layout="@layout/fragment_inicio" />
 
     <fragment
         android:id="@+id/nav_gallery"
         android:name="com.nadia.inmobiliariatp.ui.inmueble.InmueblesFragment"
-        android:label="@string/menu_gallery"
+        android:label="Inmuebles"
         tools:layout="@layout/fragment_inmuebles" >
         <action
             android:id="@+id/action_nav_gallery_to_detalleInmuebleFragment"
@@ -24,18 +24,18 @@
     <fragment
         android:id="@+id/nav_slideshow"
         android:name="com.nadia.inmobiliariatp.ui.perfil.PerfilFragment"
-        android:label="@string/menu_slideshow"
+        android:label="Perfil"
         tools:layout="@layout/fragment_perfil" />
     <fragment
         android:id="@+id/nav_contratos"
         android:name="com.nadia.inmobiliariatp.ui.contratos.ContratosFragment"
-        android:label="fragment_contratos"
-        tools:layout="@layout/fragment_contratos" />
-    <fragment
-        android:id="@+id/nav_inquilinos"
-        android:name="com.nadia.inmobiliariatp.ui.inquilinos.InquilinosFragment"
-        android:label="fragment_inquilinos"
-        tools:layout="@layout/fragment_inquilinos" />
+        android:label="Contratos Vigentes"
+        tools:layout="@layout/fragment_contratos" >
+        <action
+            android:id="@+id/action_nav_contratos_to_detalleContratoFragment"
+            app:destination="@id/detalleContratoFragment" />
+    </fragment>
+
     <fragment
         android:id="@+id/nav_logout"
         android:name="com.nadia.inmobiliariatp.ui.logout.LogoutFragment"
@@ -49,14 +49,43 @@
     <activity
         android:id="@+id/mainActivity"
         android:name="com.nadia.inmobiliariatp.MainActivity"
-        android:label="fragment_inicio"
+        android:label="Inicio"
         tools:layout="@layout/fragment_inicio" />
     <fragment
         android:id="@+id/detalleInmuebleFragment"
         android:name="com.nadia.inmobiliariatp.ui.inmueble.DetalleInmuebleFragment"
-        android:label="DetalleInmuebleFragment" >
+        android:label="Detalle Inmueble" >
         <action
             android:id="@+id/action_detalleInmuebleFragment_to_nav_gallery2"
             app:destination="@id/nav_gallery" />
+    </fragment>
+    <fragment
+        android:id="@+id/detalleContratoFragment"
+        android:name="com.nadia.inmobiliariatp.ui.contratos.DetalleContratoFragment"
+        android:label="Detalle Contrato" >
+
+        <action
+            android:id="@+id/action_detalleContratoFragment_to_fragment_inquilino"
+            app:destination="@id/fragment_inquilino" />
+        <action
+            android:id="@+id/action_detalleContratoFragment_to_pagosFragment"
+            app:destination="@id/pagosFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_inquilino"
+        android:name="com.nadia.inmobiliariatp.ui.inquilinos.InquilinoFragment"
+        android:label="Inquilino" >
+        <action
+            android:id="@+id/action_fragment_inquilino_to_detalleContratoFragment"
+            app:destination="@id/detalleContratoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pagosFragment"
+        android:name="com.nadia.inmobiliariatp.ui.pagos.PagosFragment"
+        android:label="Pagos"
+        tools:layout="@layout/fragment_pagos2" >
+        <action
+            android:id="@+id/action_pagosFragment_to_detalleContratoFragment"
+            app:destination="@id/detalleContratoFragment" />
     </fragment>
 </navigation>
